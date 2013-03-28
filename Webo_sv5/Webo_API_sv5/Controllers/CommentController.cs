@@ -17,10 +17,10 @@ namespace Webo_API_sv5.Controllers
         private Webo_API_sv5Context db = new Webo_API_sv5Context();
 
         // GET api/Comment
-        public IEnumerable<Comment> GetComments()
+        public IQueryable<Comment> GetComments()
         {
             var comments = db.Comments.Include(c => c.Video);
-            return comments.AsEnumerable();
+            return comments.AsQueryable();
         }
 
         // GET api/Comment/5

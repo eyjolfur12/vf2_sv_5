@@ -17,9 +17,9 @@ namespace Webo_API_sv5.Controllers
         private Webo_API_sv5Context db = new Webo_API_sv5Context();
 
         // GET api/Course
-        public IEnumerable<Course> GetCourses()
+        public IQueryable<Course> GetCourses()
         {
-            return db.Courses.AsEnumerable();
+            return db.Courses.AsQueryable();
         }
 
         // GET api/Course/5

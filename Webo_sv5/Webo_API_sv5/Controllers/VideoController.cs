@@ -17,9 +17,9 @@ namespace Webo_API_sv5.Controllers
         private Webo_API_sv5Context db = new Webo_API_sv5Context();
 
         // GET api/Video
-        public IEnumerable<Video> GetVideos()
+        public IQueryable<Video> GetVideos()
         {
-            return db.Videos.AsEnumerable();
+            return db.Videos.AsQueryable();
         }
 
         // GET api/Video/5
