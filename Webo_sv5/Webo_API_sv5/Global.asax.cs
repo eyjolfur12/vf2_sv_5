@@ -18,11 +18,16 @@ namespace Webo_API_sv5
         {
             AreaRegistration.RegisterAllAreas();
 
+            AuthConfig.RegisterAuth(); // viðbætt
+
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             System.Data.Entity.Database.SetInitializer(new Webo_API_sv5.Models.ContextInitializer());
+            
+            
+            
         }
     }
 }
