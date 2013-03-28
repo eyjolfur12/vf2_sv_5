@@ -22,6 +22,7 @@ namespace Webo_API_sv5
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AuthConfig.RegisterAuth();
             System.Data.Entity.Database.SetInitializer(new Webo_API_sv5.Models.ContextInitializer());
         }
     }
