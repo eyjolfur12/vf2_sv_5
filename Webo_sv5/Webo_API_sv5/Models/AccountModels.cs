@@ -16,6 +16,8 @@ namespace Webo_API_sv5.Models
         }
 
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<RegisterModel> RegisterModel { get; set; } // viðbætt
+      
     }
 
     [Table("UserProfile")]
@@ -72,6 +74,10 @@ namespace Webo_API_sv5.Models
 
     public class RegisterModel
     {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int UserId { get; set; }                             // viðbætt field
+
         [Required]
         [Display(Name = "User name")]
         public string UserName { get; set; }
