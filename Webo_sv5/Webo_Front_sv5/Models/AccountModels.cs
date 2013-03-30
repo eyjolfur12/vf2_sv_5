@@ -8,7 +8,7 @@ using System.Web.Security;
 
 namespace Webo_Front_sv5.Models
 {
-    public class UsersContext : DbContext
+    /*public class UsersContext : DbContext
     {
         public UsersContext()
             : base("DefaultConnection")
@@ -16,7 +16,7 @@ namespace Webo_Front_sv5.Models
         }
 
         public DbSet<UserProfile> UserProfiles { get; set; }
-    }
+    }*/
 
     [Table("UserProfile")]
     public class UserProfile

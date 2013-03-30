@@ -6,6 +6,10 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Data.Entity;
+using Webo_Front_sv5.Models;
+using System.Web.Security;
+using WebMatrix.WebData;
 
 namespace Webo_Front_sv5
 {
@@ -23,6 +27,15 @@ namespace Webo_Front_sv5
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+
+            //System.Data.Entity.Database.SetInitializer(new Webo_Front_sv5.Models.ContextInitializer());
+
+            Database.SetInitializer<Webo_Front_sv5Context>(new ContextInitializer());
+            Webo_Front_sv5Context context = new Webo_Front_sv5Context();
+            context.Database.Initialize(true);
+            if (!WebSecurity.Initialized)
+                WebSecurity.InitializeDatabaseConnection("DefaultConnection",
+                     "UserProfile", "UserId", "UserName", autoCreateTables: true);
         }
     }
 }

@@ -25,11 +25,11 @@ namespace Webo_Front_sv5.Filters
         {
             public SimpleMembershipInitializer()
             {
-                Database.SetInitializer<UsersContext>(null);
+                Database.SetInitializer<Webo_Front_sv5Context>(null);
 
                 try
                 {
-                    using (var context = new UsersContext())
+                    using (var context = new Webo_Front_sv5Context())
                     {
                         if (!context.Database.Exists())
                         {
@@ -39,6 +39,7 @@ namespace Webo_Front_sv5.Filters
                     }
 
                     WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+                    
                 }
                 catch (Exception ex)
                 {

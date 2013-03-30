@@ -14,7 +14,7 @@ using Webo_Front_sv5.Models;
 namespace Webo_Front_sv5.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
+ //   [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //
@@ -263,7 +263,7 @@ namespace Webo_Front_sv5.Controllers
             if (ModelState.IsValid)
             {
                 // Insert a new user into the database
-                using (UsersContext db = new UsersContext())
+                using (Webo_Front_sv5Context db = new Webo_Front_sv5Context())
                 {
                     UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
                     // Check if user already exists
