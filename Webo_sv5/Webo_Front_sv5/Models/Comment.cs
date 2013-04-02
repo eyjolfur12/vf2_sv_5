@@ -20,7 +20,7 @@ namespace Webo_Front_sv5.Models
         private DateTime Created { get; set; }
 
         // Navigation properties
-        public Video Video { get; set; }
+        public virtual Video Video { get; set; }
 
     }
 }

@@ -12,13 +12,13 @@ namespace Webo_Front_sv5.Models
     {
         [ScaffoldColumn(false)]
         public int Id { get; set; }
-        [Required]
+        //[Required]
         public string Name { get; set; }
-        [Required]
-        public int Teacher { get; set; }
-
+        //[Required]
+        public int? Teacher { get; set; }
+         
         // Navigation property
-        public ICollection<Comment> Comments { get; set; }
+        public ICollection<Video> Videos { get; set; }
 
     }
 }

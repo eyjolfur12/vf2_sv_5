@@ -1,12 +1,17 @@
 ﻿<!DOCTYPE html>
-<html>
+<html data-ng-app="lectureApp">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+     @Styles.Render("~/Content/css")
     
     <link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" type="text/css"/>
     <link href="@Url.Content("~/Content/bootstrap/css/bootstrap-responsive.css")" rel="stylesheet" type="text/css" />
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular-resource.min.js"></script>
+    <script src="@Url.Content("~/Content/lectureApp.js")" ></script>
+
 
 </head>
 <body>
@@ -28,6 +33,11 @@
                         <li><a href="#">Knockout</a></li>
                         <li><a href="#">AppHarbor</a></li>
                     </ul>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>
                 </div>
             </div>
         </div>

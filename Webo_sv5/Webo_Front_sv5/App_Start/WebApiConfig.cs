@@ -16,6 +16,7 @@ namespace Webo_Front_sv5
                 defaults: new { id = RouteParameter.Optional }
             );
             config.EnableQuerySupport();
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
         }
     }
 }

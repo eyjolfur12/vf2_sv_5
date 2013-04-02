@@ -1,0 +1,18 @@
+﻿
+<div data-ng-controller="coursesCtrl">
+	<h3>{{ message }}</h3>
+
+
+
+	<h4>Create course:</h4>
+	<input name="new-course" id="new-course" data-ng-model="newCourse">
+	<button ng-click= "addCourse()">add</button>
+
+
+	<h4>Currrent courses:</h4>
+	<ul data-ng-repeat="course in courses">
+	  <li><a href="/#/course/{{course.Id}}">{{course.Name}} </a></li>
+	</ul>
+	
+</div>	
+		

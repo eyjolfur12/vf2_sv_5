@@ -23,8 +23,8 @@ namespace Webo_Front_sv5.Models
 
             var videos = new List<Video>()
             {
-                new Video() { Name = "First lecture", Link= "http://youtu.be/5ydD7H9Okns",Course = courses[0], Description = "Great lecture by Daniel Brandur"},
-                new Video() { Name = "Second lecture", Link= "http://www.youtube.com/watch?v=pwOpvNfmjaY", Course = courses[0], Description = "Another great lecture by Daniel Brandur"},
+                new Video() { Name = "First lecture", Link= "http://youtu.be/5ydD7H9Okns",CourseId = courses[0].Id, Description = "Great lecture by Daniel Brandur"},
+                new Video() { Name = "Second lecture", Link= "http://www.youtube.com/watch?v=pwOpvNfmjaY", CourseId = courses[0].Id, Description = "Another great lecture by Daniel Brandur"},
             };
             videos.ForEach(o => context.Videos.Add(o));
             context.SaveChanges();
