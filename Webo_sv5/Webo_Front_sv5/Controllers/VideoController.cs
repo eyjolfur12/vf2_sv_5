@@ -25,7 +25,9 @@ namespace Webo_Front_sv5.Controllers
         // GET api/Video/5
         public Video GetVideo(int id)
         {
-            Video video = db.Videos.Find(id);
+            //Video video = db.Videos.Find(id);
+            Video video = db.Videos.Where(b => b.Id == id).Include("Comments").FirstOrDefault();
+
             if (video == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));

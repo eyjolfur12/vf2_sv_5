@@ -28,10 +28,7 @@ namespace Webo_Front_sv5.Controllers
         public Course GetCourse(int id)
         {
             //var course = db.Courses.Include("Videos").Tolist();
-            Course course = db.Courses
-                    .Where(b => b.Id == id)
-                    .Include("Videos")
-                    .FirstOrDefault();
+            Course course = db.Courses.Where(b => b.Id == id).Include("Videos").FirstOrDefault();
 
             if (course == null)
             {

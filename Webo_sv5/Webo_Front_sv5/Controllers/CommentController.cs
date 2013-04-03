@@ -19,7 +19,7 @@ namespace Webo_Front_sv5.Controllers
         // GET api/Comment
         public IQueryable<Comment> GetComments()
         {
-            var comments = db.Comments.Include(c => c.Video);
+            var comments = db.Comments.Include(c => c.VideoId);
             return comments.AsQueryable();
         }
 

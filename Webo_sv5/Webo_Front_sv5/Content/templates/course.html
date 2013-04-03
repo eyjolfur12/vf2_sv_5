@@ -1,0 +1,20 @@
+﻿
+<div data-ng-controller="courseCtrl">
+	<h3>{{ name }}</h3>
+    <p>{{ description }}</p>
+
+
+    <h4>Lectures:</h4>
+	<ul data-ng-repeat="video in videos">
+	  <li><a href="/#/video/{{video.Id}}">{{video.Name}} </a></li>
+	</ul>
+
+
+	<h4>Add lecture:</h4>
+	<input name="new-video" id="new-video" data-ng-model="newVideo">
+	<button data-ng-click= "addVideo()">add</button>
+
+
+	
+</div>	
+		

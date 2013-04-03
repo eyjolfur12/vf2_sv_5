@@ -1,0 +1,31 @@
+﻿
+<div data-ng-controller="videoCtrl">
+	<h3>{{ name }}</h3>
+    <p>{{ description }}</p>
+    <p>{{ link }}</p>
+
+    <object width="640" height="390">
+  <param name="movie"
+         value="https://www.youtube.com/v/{{ link }}?version=3&autoplay=1"></param>
+  <param name="allowScriptAccess" value="always"></param>
+  <embed src="https://www.youtube.com/v/{{ link }}?version=3&autoplay=1"
+         type="application/x-shockwave-flash"
+         allowscriptaccess="always"
+         width="640" height="390"></embed>
+</object>
+
+
+    <h4>Comments:</h4>
+	<ul data-ng-repeat="comment in comments">
+	  <li>{{comment.UserId}} -- {{ comment.CommentText }}</li>
+	</ul>
+
+
+	<h4>Add comment:</h4>
+	<input name="new-comment" id="new-comment" data-ng-model="newComment">
+	<button data-ng-click= "addComment()">add</button>
+
+
+	
+</div>	
+		

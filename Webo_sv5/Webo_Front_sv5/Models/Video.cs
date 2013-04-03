@@ -21,6 +21,6 @@ namespace Webo_Front_sv5.Models
         private DateTime Created { get; set; }
 
         // Navigation properties
-        //public Course Course { get; set; }
+        public ICollection<Comment> Comments { get; set; }
     }
 }
