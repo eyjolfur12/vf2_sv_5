@@ -62,6 +62,11 @@ namespace Webo_Front_sv5.Controllers
         // POST api/Comment
         public HttpResponseMessage PostComment(Comment comment)
         {
+            if (String.IsNullOrEmpty(comment.User))
+            {
+                comment.User = User.Identity.Name;
+            }
+
             if (ModelState.IsValid)
             {
                 db.Comments.Add(comment);

@@ -15,7 +15,7 @@ namespace Webo_Front_sv5.Models
         //[Required]
         public string Name { get; set; }
         //[Required]
-        public int? Teacher { get; set; }
+        public string Teacher { get; set; }
          
         // Navigation property
         public ICollection<Video> Videos { get; set; }

@@ -68,8 +68,9 @@ namespace Webo_Front_sv5.Controllers
         public HttpResponseMessage PostCourse(Course course)
         {
 
-            if (!course.Teacher.HasValue) {
-                course.Teacher = 3;
+            if (String.IsNullOrEmpty(course.Teacher))
+            {
+                course.Teacher = User.Identity.Name;
             }
             if (ModelState.IsValid)
             {

@@ -11,8 +11,12 @@
 
 
 	<h4>Add lecture:</h4>
-	<input name="new-video" id="new-video" data-ng-model="newVideo">
+    <form novalidate >
+	    Name: <input name="new-video" id="new-video" data-ng-model="newVideo.name" /><br />
+        YouTube Id: <input name="new-video" id="Text1" data-ng-model="newVideo.link" /><br />
+        Description: <input name="new-video" id="Text2" data-ng-model="newVideo.description" />
 	<button data-ng-click= "addVideo()">add</button>
+    </form>
 
 
 	

@@ -14,8 +14,8 @@ namespace Webo_Front_sv5.Models
         [ScaffoldColumn(false)]
         public int VideoId { get; set; }
         [ScaffoldColumn(false)]
-        public int UserId { get; set; }
-        [Required]
+        public string User { get; set; }
+        //[Required]
         public string CommentText { get; set; }
         private DateTime Created { get; set; }
 

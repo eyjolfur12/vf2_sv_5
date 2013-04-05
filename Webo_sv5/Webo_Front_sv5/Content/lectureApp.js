@@ -31,6 +31,20 @@ app.factory('VideoModel', ['$resource', '$routeParams', function ($resource, $ro
 
 }]);
 
+app.factory('CommentModel', ['$resource', '$routeParams', function ($resource, $routeParams) {
+
+    var resource = $resource('/api/comment/:id', { id: '@id' }, {
+        query: { method: 'GET', isArray: true },
+        get: { method: 'GET' },
+        save: { method: 'PUT', params: { id: $routeParams.rid } },
+        create: { method: 'POST' },
+        delete: { method: 'DELETE' }
+    }
+	);
+    return resource;
+
+}]);
+
 
 
 
@@ -42,33 +56,42 @@ app.controller("coursesCtrl", ['$scope', '$route', 'CourseModel', function ($sco
 
     $scope.message = 'Available courses';
     $scope.courses = CourseModel.query();
-console.log($scope.courses);
+//console.log($scope.courses);
     $scope.newCourse = '';
     $scope.addCourse = function () {
-        CourseModel.create({Name : $scope.newCourse, Teacher: 2});
+        CourseModel.create({ Name: $scope.newCourse},
+                function (data) {
+                    $scope.newCourse = '';
+                    $scope.courses.push(data);
+                });
+        
     };
 }]);
 
-app.controller("courseCtrl", ['$scope', '$routeParams', 'CourseModel', function ($scope, $routeParams, CourseModel) {
+app.controller("courseCtrl", ['$scope', '$routeParams', 'CourseModel', 'VideoModel', function ($scope, $routeParams, CourseModel, VideoModel) {
 
     $scope.message = 'Course: ';
-    //$scope.course = CourseModel.get({ id: $routeParams.id });
+//$scope.course = CourseModel.get({ id: $routeParams.id });
     CourseModel.get({ id: $routeParams.id },
     function (data) {
         $scope.name = data.Name;
         $scope.videos = data.Videos;
     });
 
-    $scope.newVideo = '';
+    $scope.newVideo = {};
     $scope.addVideo = function () {
-        VideoModel.create({ Name: $scope.newVideo, Teacher: 2 });
+console.log({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Description: $scope.newVideo.description });
+        VideoModel.create({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Description: $scope.newVideo.description },
+        function (data) {
+            $scope.newVideo = {};
+            $scope.videos.push(data);        
+        });
     };
 }]);
 
-app.controller("videoCtrl", ['$scope', '$routeParams', 'VideoModel', function ($scope, $routeParams, VideoModel) {
+app.controller("videoCtrl", ['$scope', '$routeParams', 'VideoModel', 'CommentModel',function ($scope, $routeParams, VideoModel, CommentModel) {
 
     $scope.message = 'Lecture: ';
-    //$scope.course = CourseModel.get({ id: $routeParams.id });
     VideoModel.get({ id: $routeParams.id },
     function (data) {
         $scope.name = data.Name;
@@ -77,9 +100,13 @@ app.controller("videoCtrl", ['$scope', '$routeParams', 'VideoModel', function ($
         $scope.comments = data.Comments;
     });
 
-    $scope.newComment = '';
+    $scope.newComment = "";
     $scope.addComment = function () {
-        VideoComment.create({ Name: $scope.newComment, Teacher: 2 });
+        CommentModel.create({ VideoId: $routeParams.id, CommentText: $scope.newComment },
+        function (data) {
+            $scope.newComment = "";
+            $scope.comments.push(data);
+        });
     };
 }]);
 

@@ -11,11 +11,11 @@ namespace Webo_Front_sv5.Models
 
         [ScaffoldColumn(false)]
         public int Id { get; set; }
-        [Required]
+        //[Required]
         public int CourseId { get; set; }
-        [Required]
+        //[Required]
         public string Name { get; set; }
-        [Required]
+        //[Required]
         public string Link { get; set; }
         public string Description { get; set; }
         private DateTime Created { get; set; }

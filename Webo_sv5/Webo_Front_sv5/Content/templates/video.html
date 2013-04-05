@@ -6,18 +6,18 @@
 
     <object width="640" height="390">
   <param name="movie"
-         value="https://www.youtube.com/v/{{ link }}?version=3&autoplay=1"></param>
-  <param name="allowScriptAccess" value="always"></param>
+         value="https://www.youtube.com/v/{{ link }}?version=3&autoplay=1" />
+  <param name="allowScriptAccess" value="always" />
   <embed src="https://www.youtube.com/v/{{ link }}?version=3&autoplay=1"
          type="application/x-shockwave-flash"
          allowscriptaccess="always"
-         width="640" height="390"></embed>
+         width="640" height="390" />
 </object>
 
 
     <h4>Comments:</h4>
 	<ul data-ng-repeat="comment in comments">
-	  <li>{{comment.UserId}} -- {{ comment.CommentText }}</li>
+	  <li>{{comment.User}} -- {{ comment.CommentText }}</li>
 	</ul>
 
 

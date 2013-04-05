@@ -16,7 +16,7 @@ namespace Webo_Front_sv5.Models
         {
             var courses = new List<Course>()            
             {
-                new Course() { Name = "First course", Teacher = 1 },
+                new Course() { Name = "First course", Teacher = "dabs" },
             };
 
             courses.ForEach(p => context.Courses.Add(p));
@@ -32,8 +32,8 @@ namespace Webo_Front_sv5.Models
 
             var comments = new List<Comment>()
             {
-                new Comment() { CommentText = "Wow, what a great lecture !", VideoId = videos[0].Id, UserId = 1},
-                new Comment() { CommentText = "I totally agree !", VideoId = videos[0].Id, UserId = 2},
+                new Comment() { CommentText = "Wow, what a great lecture !", VideoId = videos[0].Id, User = "ek"},
+                new Comment() { CommentText = "I totally agree !", VideoId = videos[0].Id, User = "ek"},
             };
             comments.ForEach(o => context.Comments.Add(o));
             context.SaveChanges();
@@ -58,6 +58,10 @@ namespace Webo_Front_sv5.Models
             if (membership.GetUser("dabs", false) == null)
             {
                 membership.CreateUserAndAccount("dabs", "smuu"); 
+            }
+            if (membership.GetUser("ek", false) == null)
+            {
+                membership.CreateUserAndAccount("ek", "ekek");
             }
             if (!roles.GetRolesForUser("test").Contains("Admin"))
             {
