@@ -5,7 +5,7 @@
 
 
 
-	<h4>Currrent courses:</h4>
+	<h4>Current courses:</h4>
 	<ul data-ng-repeat="course in courses">
 	  <li><a href="/#/course/{{course.Id}}">{{course.Name}} </a></li>
 	</ul>
@@ -14,7 +14,7 @@
 
 	<h4>Create course:</h4>
 	<input name="new-course" id="new-course" data-ng-model="newCourse">
-	<button data-ng-click= "addCourse()">add</button>
+	<button class="btn btn-primary" data-ng-click= "addCourse()">add</button>
 	
 </div>	
 		
