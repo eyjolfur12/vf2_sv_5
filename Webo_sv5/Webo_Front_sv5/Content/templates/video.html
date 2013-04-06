@@ -3,37 +3,38 @@
 
 
     <div class="row">
-        <div class="span7">
+        <div class="span10">
             <h3>{{ name }}</h3>
-            <p>{{ description }}</p>
-            <p id="link">{{ link }}</p>
+            <p>Description: {{ description }}</p>
+      
+       
 
     
-    
+        
          <div class="video-container">
             <div id="player" ></div>
         </div>
             
  
-            <h4>Add comment:</h4>
-            <textarea rows="3" class="span6" name="new-comment" id="new-comment" data-ng-model="newComment"></textarea>
-            <button class="btn" data-ng-click="addComment()">Add Comment</button>
+        <h4>Add comment:</h4>
+        <textarea rows="3" class="span10" name="new-comment" id="new-comment" data-ng-model="newComment"></textarea>
+        <button class="btn btn-primary pull-right" data-ng-click="addComment()">Add Comment</button>
   
-
-
-       <div class="row">
-        <div class="span6">
-            <h4>Comments:</h4>
-            <ul data-ng-repeat="comment in comments">
-                <div class="well well-small">
-                    {{comment.User}} wrote: {{ comment.CommentText }}
-                </div>
-            </ul>
+  
+        <div class="row">
+            <div class="span10">
+                <h4>Comments:</h4>
+                <ul data-ng-repeat="comment in comments | orderBy:'Id':reverse=true">
+                    <div class="well well-small">
+                        {{comment.User}} wrote: {{ comment.CommentText }}
+                    </div>
+                </ul>
             </div>
-           </div>
         </div>
     </div>
 </div>
+</div>
+
 
 
 
