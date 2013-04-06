@@ -1,15 +1,15 @@
-﻿
-<div data-ng-controller="coursesCtrl">
+﻿<div data-ng-controller="coursesCtrl">
 	<h3>{{ message }}</h3>
 
 
 
 
-	<h4>Currrent courses:</h4>
+	<h4>Current courses:</h4>
 	<ul data-ng-repeat="course in courses">
 	  <li><a href="/#/course/{{course.Id}}">{{course.Name}} </a></li>
 	</ul>
 
+<<<<<<< HEAD
     --{{ role.data  }}--
     <div data-ng-switch on="role.data">
     <div data-ng-switch-when="True">
@@ -18,5 +18,18 @@
 	<button data-ng-click= "addCourse()">add</button>
 	</div>
 	</div>
+=======
+
+   	<h4>Create course:</h4>
+
+    <div class="input-append">
+        <input type="text" name="new-course" id="new-course" data-ng-model="newCourse">
+	    <button class="btn btn-primary" data-ng-click= "addCourse()">Create</button>
+    </div>
+
+	
+	
+>>>>>>> a6055d45a9705edac226123dc145ad406dd94f81
 </div>	
+
 		

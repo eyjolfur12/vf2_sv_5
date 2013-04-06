@@ -1,0 +1,36 @@
+﻿html, body {
+    background-color:white;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+body {
+    padding-top: 70px;
+}
+.container {
+    width: 300px;
+}
+
+/* The white background content wrapper */
+.container > .content {
+    ba
+    padding: 20px;
+    margin: 0 -20px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    -webkit-box-shadow: 0px 0px 30px rgba(50, 50, 50, 0.62);
+    -moz-box-shadow:    0px 0px 30px rgba(50, 50, 50, 0.62);
+    box-shadow:         0px 0px 30px rgba(50, 50, 50, 0.62);
+}
+
+.login-form {
+    margin-left: 65px;
+}
+
+legend {
+    margin-right: -50px;
+    font-weight: bold;
+    color: #404040;
+}

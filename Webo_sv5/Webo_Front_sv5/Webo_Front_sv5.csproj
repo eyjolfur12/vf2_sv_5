@@ -251,8 +251,10 @@
     <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
     <Content Include="Content\bootstrap\js\bootstrap.js" />
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
-    <Content Include="Content\bootstrap\js\jquery.js" />
+    <Content Include="Content\bootstrap\jquery.js" />
     <Content Include="Content\lectureApp.js" />
+    <Content Include="Content\login.css" />
+    <Content Include="Content\navbar.css" />
     <Content Include="Content\templates\course.html" />
     <Content Include="Content\templates\courses.html" />
     <Content Include="Content\templates\video.html" />
@@ -355,7 +357,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\NewFolder1\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
