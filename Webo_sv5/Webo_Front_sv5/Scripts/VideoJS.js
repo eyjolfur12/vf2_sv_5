@@ -20,6 +20,7 @@ function onYouTubeIframeAPIReady(link) {
         }
     });
 }
+
 function onPlayerReady(evt) {
     evt.target.playVideo();
 }
