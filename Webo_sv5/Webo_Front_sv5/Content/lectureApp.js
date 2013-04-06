@@ -98,6 +98,8 @@ app.controller("videoCtrl", ['$scope', '$routeParams', 'VideoModel', 'CommentMod
         $scope.description = data.Description;
         $scope.link = data.Link;
         $scope.comments = data.Comments;
+               
+        onYouTubeIframeAPIReady(data.Link); 
     });
 
     $scope.newComment = "";
@@ -134,5 +136,6 @@ app.config(['$routeProvider', function ($route) {
 
 
 }]);
+
 
 

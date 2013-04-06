@@ -1,5 +1,4 @@
-﻿
-<div data-ng-controller="coursesCtrl">
+﻿<div data-ng-controller="coursesCtrl">
 	<h3>{{ message }}</h3>
 
 
@@ -10,11 +9,16 @@
 	  <li><a href="/#/course/{{course.Id}}">{{course.Name}} </a></li>
 	</ul>
 
-    
 
-	<h4>Create course:</h4>
-	<input name="new-course" id="new-course" data-ng-model="newCourse">
-	<button class="btn btn-primary" data-ng-click= "addCourse()">add</button>
+   	<h4>Create course:</h4>
+
+    <div class="input-append">
+        <input type="text" name="new-course" id="new-course" data-ng-model="newCourse">
+	    <button class="btn btn-primary" data-ng-click= "addCourse()">Create</button>
+    </div>
+
+	
 	
 </div>	
+
 		
