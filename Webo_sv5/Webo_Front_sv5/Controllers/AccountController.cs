@@ -17,6 +17,10 @@ namespace Webo_Front_sv5.Controllers
  //   [InitializeSimpleMembership]
     public class AccountController : Controller
     {
+        // GET: /Account/RoleCheck
+        [HttpGet]
+        public bool RoleCheck() { return User.IsInRole("Teacher"); }
+
         //
         // GET: /Account/Login
 

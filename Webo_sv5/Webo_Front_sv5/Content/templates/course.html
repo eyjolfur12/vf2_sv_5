@@ -9,7 +9,8 @@
 	  <li><a href="/#/video/{{video.Id}}">{{video.Name}} </a></li>
 	</ul>
 
-
+     <div data-ng-switch on="role.data">
+    <div data-ng-switch-when="True">
 	<h4>Add lecture:</h4>
     <form novalidate >
 	    Name: <input name="new-video" id="new-video" data-ng-model="newVideo.name" /><br />
@@ -17,6 +18,8 @@
         Description: <input name="new-video" id="Text2" data-ng-model="newVideo.description" />
 	<button data-ng-click= "addVideo()">add</button>
     </form>
+    </div>
+	</div>
 
 
 	

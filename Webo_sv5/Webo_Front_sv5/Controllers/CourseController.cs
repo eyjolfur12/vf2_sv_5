@@ -41,6 +41,7 @@ namespace Webo_Front_sv5.Controllers
         }
 
         // PUT api/Course/5
+        [Authorize(Roles = "Teacher")]
         public HttpResponseMessage PutCourse(int id, Course course)
         {
             if (ModelState.IsValid && id == course.Id)
@@ -65,6 +66,7 @@ namespace Webo_Front_sv5.Controllers
         }
 
         // POST api/Course
+        [Authorize(Roles = "Teacher")]
         public HttpResponseMessage PostCourse(Course course)
         {
 
@@ -88,6 +90,7 @@ namespace Webo_Front_sv5.Controllers
         }
 
         // DELETE api/Course/5
+        [Authorize(Roles = "Teacher")]
         public HttpResponseMessage DeleteCourse(int id)
         {
             Course course = db.Courses.Find(id);

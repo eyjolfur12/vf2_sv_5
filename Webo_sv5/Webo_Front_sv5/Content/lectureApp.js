@@ -3,8 +3,28 @@ var app = angular.module('lectureApp', ['ngResource']);
 
 /*** Services ***/
 
+
+app.factory('isTeacher', ['$http', function ($http) {
+    
+    
+    var req = $http.get('/account/rolecheck').success(function (data) {
+            var isit = "";
+ console.log(data);
+ isit = data;
+ return isit;
+ 
+        });
+
+    return req;
+
+    
+
+    //return function(a, b) { return a + b;};
+}]);
+
+
 app.factory('CourseModel', ['$resource', '$routeParams', function ($resource, $routeParams) {
-    console.log("kallar");
+
     var resource = $resource('/api/course/:id', { id: '@id' }, {
         query: { method: 'GET', isArray: true },
         get: { method: 'GET',  isArray: false },
@@ -52,11 +72,11 @@ app.factory('CommentModel', ['$resource', '$routeParams', function ($resource, $
 
 /*** Controllers ***/
 
-app.controller("coursesCtrl", ['$scope', '$route', 'CourseModel', function ($scope, $route, CourseModel) {
+app.controller("coursesCtrl", ['$scope', '$route', 'CourseModel','isTeacher', function ($scope, $route, CourseModel, isTeacher) {
 
     $scope.message = 'Available courses';
     $scope.courses = CourseModel.query();
-//console.log($scope.courses);
+    $scope.role = isTeacher;
     $scope.newCourse = '';
     $scope.addCourse = function () {
         CourseModel.create({ Name: $scope.newCourse},
@@ -68,7 +88,7 @@ app.controller("coursesCtrl", ['$scope', '$route', 'CourseModel', function ($sco
     };
 }]);
 
-app.controller("courseCtrl", ['$scope', '$routeParams', 'CourseModel', 'VideoModel', function ($scope, $routeParams, CourseModel, VideoModel) {
+app.controller("courseCtrl", ['$scope', '$routeParams', 'CourseModel', 'VideoModel','isTeacher', function ($scope, $routeParams, CourseModel, VideoModel,isTeacher) {
 
     $scope.message = 'Course: ';
 //$scope.course = CourseModel.get({ id: $routeParams.id });
@@ -77,10 +97,10 @@ app.controller("courseCtrl", ['$scope', '$routeParams', 'CourseModel', 'VideoMod
         $scope.name = data.Name;
         $scope.videos = data.Videos;
     });
-
+    $scope.role = isTeacher;
     $scope.newVideo = {};
     $scope.addVideo = function () {
-console.log({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Description: $scope.newVideo.description });
+//console.log({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Description: $scope.newVideo.description });
         VideoModel.create({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Description: $scope.newVideo.description },
         function (data) {
             $scope.newVideo = {};
@@ -130,6 +150,10 @@ app.config(['$routeProvider', function ($route) {
     $route.when('/video/:id', {
         templateUrl: '/content/templates/video.html',
         controller: app.videoCtrl
+    });
+
+    $route.otherwise({
+        redirectTo: '/'
     });
 
 

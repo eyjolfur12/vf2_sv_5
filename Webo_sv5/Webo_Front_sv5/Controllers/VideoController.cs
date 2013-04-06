@@ -37,6 +37,7 @@ namespace Webo_Front_sv5.Controllers
         }
 
         // PUT api/Video/5
+        [Authorize(Roles = "Teacher")]
         public HttpResponseMessage PutVideo(int id, Video video)
         {
             if (ModelState.IsValid && id == video.Id)
@@ -61,6 +62,7 @@ namespace Webo_Front_sv5.Controllers
         }
 
         // POST api/Video
+        [Authorize(Roles = "Teacher")]
         public HttpResponseMessage PostVideo(Video video)
         {
             if (ModelState.IsValid)
@@ -79,6 +81,7 @@ namespace Webo_Front_sv5.Controllers
         }
 
         // DELETE api/Video/5
+        [Authorize(Roles = "Teacher")]
         public HttpResponseMessage DeleteVideo(int id)
         {
             Video video = db.Videos.Find(id);

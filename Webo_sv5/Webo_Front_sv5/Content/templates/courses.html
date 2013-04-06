@@ -10,11 +10,13 @@
 	  <li><a href="/#/course/{{course.Id}}">{{course.Name}} </a></li>
 	</ul>
 
-    
-
+    --{{ role.data  }}--
+    <div data-ng-switch on="role.data">
+    <div data-ng-switch-when="True">
 	<h4>Create course:</h4>
 	<input name="new-course" id="new-course" data-ng-model="newCourse">
 	<button data-ng-click= "addCourse()">add</button>
-	
+	</div>
+	</div>
 </div>	
 		
