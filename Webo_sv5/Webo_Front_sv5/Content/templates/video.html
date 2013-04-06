@@ -1,24 +1,40 @@
 ﻿
 <div data-ng-controller="videoCtrl">
-	<h3>{{ name }}</h3>
-    <p>{{ description }}</p>
-    <p id="link">{{ link }}</p>
+
+
+    <div class="row">
+        <div class="span7">
+            <h3>{{ name }}</h3>
+            <p>{{ description }}</p>
+            <p id="link">{{ link }}</p>
 
     
-    <div>
-        <div id="player"></div>
-        
-        <h4>Comments:</h4>
-	    <ul data-ng-repeat="comment in comments">
-	      <li>{{comment.User}} -- {{ comment.CommentText }}</li>
-	    </ul>
+    
+         <div class="video-container">
+            <div id="player" ></div>
+        </div>
+            
+ 
+            <h4>Add comment:</h4>
+            <textarea rows="3" class="span6" name="new-comment" id="new-comment" data-ng-model="newComment"></textarea>
+            <button class="btn" data-ng-click="addComment()">Add Comment</button>
+  
 
 
-	    <h4>Add comment:</h4>
-	    <input name="new-comment" id="new-comment" data-ng-model="newComment">
-	    <button data-ng-click= "addComment()">add</button>
+       <div class="row">
+        <div class="span6">
+            <h4>Comments:</h4>
+            <ul data-ng-repeat="comment in comments">
+                <div class="well well-small">
+                    {{comment.User}} wrote: {{ comment.CommentText }}
+                </div>
+            </ul>
+            </div>
+           </div>
+        </div>
     </div>
 </div>
+
 
 
 
