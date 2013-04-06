@@ -1,3 +1,4 @@
+﻿
 ﻿var lectureApp = {};
 var app = angular.module('lectureApp', ['ngResource']);
 
@@ -158,5 +159,3 @@ app.config(['$routeProvider', function ($route) {
 
 
 }]);
-
-
