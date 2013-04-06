@@ -4,34 +4,20 @@
     <p>{{ description }}</p>
     <p id="link">{{ link }}</p>
 
-<!--
-    <object width="640" height="390">
-        <param name="movie"
-            value="https://www.youtube.com/v/{{ link }}?version=3&autoplay=1" />
-        <param name="allowScriptAccess" value="always" />
-        <embed src="https://www.youtube.com/v/{{ link }}?version=3&autoplay=1"
-                type="application/x-shockwave-flash"
-                allowscriptaccess="always"
-                width="640" height="390" />
-    </object>
--->
-
-    <section>
-        <div>
-            <div id="player"></div>
-        </div>
-    </section>	
-
-    <h4>Comments:</h4>
-	<ul data-ng-repeat="comment in comments">
-	  <li>{{comment.User}} -- {{ comment.CommentText }}</li>
-	</ul>
+    
+    <div>
+        <div id="player"></div>
+        
+        <h4>Comments:</h4>
+	    <ul data-ng-repeat="comment in comments">
+	      <li>{{comment.User}} -- {{ comment.CommentText }}</li>
+	    </ul>
 
 
-	<h4>Add comment:</h4>
-	<input name="new-comment" id="new-comment" data-ng-model="newComment">
-	<button data-ng-click= "addComment()">add</button>
-
+	    <h4>Add comment:</h4>
+	    <input name="new-comment" id="new-comment" data-ng-model="newComment">
+	    <button data-ng-click= "addComment()">add</button>
+    </div>
 </div>
 
 
