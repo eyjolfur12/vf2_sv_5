@@ -123,7 +123,10 @@ app.controller("courseCtrl", ['$scope', '$routeParams', 'CourseModel', 'VideoMod
     };
 }]);
 
-app.controller("videoCtrl", ['$scope', '$routeParams', 'VideoModel', 'CommentModel',function ($scope, $routeParams, VideoModel, CommentModel) {
+app.controller("videoCtrl", ['$scope', '$routeParams', 'VideoModel', 'CommentModel', 'CourseModel',function ($scope, $routeParams, VideoModel, CommentModel, CourseModel) {    
+
+    var currentVid;
+    var videoIdList = [];
 
     $scope.message = 'Lecture: ';
     VideoModel.get({ id: $routeParams.id },
@@ -132,7 +135,25 @@ app.controller("videoCtrl", ['$scope', '$routeParams', 'VideoModel', 'CommentMod
         $scope.description = data.Description;
         $scope.link = data.Link;
         $scope.comments = data.Comments;
-        onYouTubeIframeAPIReady(data.Link); // kalla i player og setja videoid til að spila
+        currentVid = data.Link;
+
+        CourseModel.get({ Id: data.CourseId },
+           function (data) {
+               alert("course");
+               var courseVideos = data.Videos;
+               $scope.courseVideos = courseVideos;
+
+               /*
+                   for (var i = 0; i < courseVideos.length; i++) {
+                       videoIdList.push(courseVideos[i].Link);
+                   }                                
+                   thumbs for selected lecture
+                   createDisplayThumbnail(currentVid, videoIdList);
+               */
+           });
+
+        // render videoplayer with selected videoid parameter
+        onYouTubeIframeAPIReady(currentVid);        
     });
 
     $scope.newComment = "";
