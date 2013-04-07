@@ -1,16 +1,38 @@
+
 ﻿<div data-ng-controller="videoCtrl">
+
     <div class="row">
         <div class="span10">
+            
+            <div id="thumb-container">             
+                <h2>Related videos:</h2>   
+                <ul data-ng-repeat="vid in courseVideos">                   
+                    <li><strong>{{ vid.Name }}:</strong>
+                        <a href="/#/video/{{ vid.Id }}">
+                            <div>
+                                <img src="http://img.youtube.com/vi/{{ vid.Link }}/1.jpg" />
+                                <img src="http://img.youtube.com/vi/{{ vid.Link }}/2.jpg" />
+                                <img src="http://img.youtube.com/vi/{{ vid.Link }}/3.jpg" />
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+       
+
             <h3>{{ name }}</h3>
             <p>Description: {{ description }}</p>
 
-            <div class="video-container">             
-                <div id="player" >You need Flash player 8+ and JavaScript enabled to view this video.</div>
-            </div>
+              
+         <div class="video-container" id="video-containerID">
+             
+            <div id="player" >You need Flash player 8+ and JavaScript enabled to view this video.</div>
             
-            <div>
-                <a href="javascript:faster()">Faster</a> 
-            </div>
+        </div>
+        <div id="speed">
+            <a href="javascript:slower()">Slower</a> 
+            <a href="javascript:faster()">Faster</a>
+        </div>
  
             <h4>Add comment:</h4>
             <textarea rows="3" class="span10" name="new-comment" id="new-comment" data-ng-model="newComment"></textarea>
