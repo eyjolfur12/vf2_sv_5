@@ -1,15 +1,20 @@
-﻿//Load player api asynchronously.
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
+﻿
 var done = false;
 var player;
 var tmp;
 
-function onYouTubeIframeAPIReady(link) {    
+function initPlayer(link){
+    //Load player api asynchronously.
+    var tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    tmp = link
+}
+
+function onYouTubeIframeAPIReady(link) {
+
     if (link != null) {
         tmp = link;        
     }
@@ -95,26 +100,3 @@ function getRelatedVideos(videoId) {
 
 }
 
-// Create a thumbnail for a video snippet.
-function createDisplayThumbnail(videoId, videoIdList) {
-    // alert(videoId);
-    var titleEl = $('<h3>');
-    titleEl.addClass('video-id');
-    $(titleEl).html("VideoId: " + videoId);   
-    
-    var thumbnailUrl1 = "http://img.youtube.com/vi/" + videoId + "/1.jpg";
-    var thumbnailUrl2 = "http://img.youtube.com/vi/" + videoIdList[1] + "/2.jpg";
-    var thumbnailUrl3 = "http://img.youtube.com/vi/" + videoIdList[1] + "/3.jpg";
-
-    var div = $('<div>');
-
-    var img1 = $('<img src=' + thumbnailUrl1 + ' >');
-    var img2 = $('<img src=' + thumbnailUrl2 + ' >');
-    var img3 = $('<img src=' + thumbnailUrl3 + ' >');
-   
-    div.append(img1);
-    div.append(img2);
-    div.append(img3);
-
-    $('#thumb-container').append(div);
-}

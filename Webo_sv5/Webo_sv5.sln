@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webo_API_sv5", "Webo_API_sv5\Webo_API_sv5.csproj", "{7CC38C68-FEFF-4FA2-94F0-E79F80D6C091}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webo_Front_sv5", "Webo_Front_sv5\Webo_Front_sv5.csproj", "{75C9EB13-2AE9-406A-80FA-FBE4809D0AD1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D1DD996C-CD97-420C-B615-A69EF23834FC}"
@@ -16,10 +14,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7CC38C68-FEFF-4FA2-94F0-E79F80D6C091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7CC38C68-FEFF-4FA2-94F0-E79F80D6C091}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7CC38C68-FEFF-4FA2-94F0-E79F80D6C091}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7CC38C68-FEFF-4FA2-94F0-E79F80D6C091}.Release|Any CPU.Build.0 = Release|Any CPU
 		{75C9EB13-2AE9-406A-80FA-FBE4809D0AD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{75C9EB13-2AE9-406A-80FA-FBE4809D0AD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75C9EB13-2AE9-406A-80FA-FBE4809D0AD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
