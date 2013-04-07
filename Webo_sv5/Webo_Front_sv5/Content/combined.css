@@ -14,13 +14,26 @@ body {
 
 }
 
+
+
 .well {
     margin-left: -25px;
+}
+
+#wellOverride {
+    margin-left: 0px;
 }
 
 ul#comments
 {
     list-style-type: none; /* taka bullet af comment*/
+}
+
+ul#lectureList {
+    list-style-type:none;
+    margin-left:0px;
+    
+
 }
 
 .btn
@@ -62,4 +75,21 @@ div#loginNav {
 .errormsg {
     color:red;
 }
->>>>>>> b672f55a0fc0a90605cd0e498daa28a9551f28e7
+
+img {
+    padding-right:5px;
+}
+
+#override {
+    margin: 0px;
+}
+
+#videoname {
+
+    font-size: x-large;
+    margin-left:0px;
+}
+
+p#descript {
+    margin-left:-10px;
+}

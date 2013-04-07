@@ -1,16 +1,41 @@
 ﻿<div data-ng-controller="courseCtrl">
     <div class="row">
-        <div class="span5">
+        <div class="span6">
+            <h3>{{ name }}</h3>
+            <div data-ng-switch on="role.data">
+                <div data-ng-switch-when="True">
+                    <ul class="inline">    
+                        <li><button class="btn btn-primary pull-left" data-ng-click="show=!show" >Edit Course information</button><br style="clear:both"/></li>
+                        <li><button class="btn btn-primary pull-left" data-ng-click="show2=!show2">Add lecture</button><br style="clear:both"/></li>
+                    </ul>
+                </div>
+            </div>
 
-	        <h3>{{ name }}</h3>
+            <div>
+                <h4>Lectures:</h4>
 
+	            <ul id="lectureList" data-ng-repeat="video in videos">
+                    <li>
+                        <div id="override" class="well well-small clearfix">
+                       
+                            <a href="/#/video/{{video.Id}}">
+                            
+                            <img src="{{video.thumb}}" class="pull-left"/>
+                            <p id="videoname" class="span3 pull-left">{{video.Name}} </p>  
+                          
+                            </a>
+                               
+                            <div class="span4 pull-left">
+                                <p id="descript">{{video.Description}}</p>
+                            </div>
+                        </div>
 
-            <h4>Lectures:</h4>
-	        <ul data-ng-repeat="video in videos">
-	          <li><img src="{{video.thumb}} " /><a href="/#/video/{{video.Id}}">{{video.Name}}</a></li>
-	        </ul>
+                    </li>
+	            </ul>
+            </div>
           
 
+            
 
         </div>
         <div class="span5">
@@ -18,7 +43,6 @@
             <div data-ng-switch on="role.data">
                 <div data-ng-switch-when="True">
 
-                    <button class="btn btn-primary pull-left" data-ng-click="show=!show" >Edit Course information</button><br style="clear:both"/>
 
         <div data-ng-show="show">
 
@@ -35,7 +59,6 @@
             </form>
         </div>
 
-        <button class="btn btn-primary pull-left" data-ng-click="show2=!show2">Add lecture</button><br style="clear:both"/>
 
         <div data-ng-show="show2">
 
