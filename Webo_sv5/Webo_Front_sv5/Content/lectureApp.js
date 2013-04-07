@@ -1,10 +1,35 @@
-﻿var lectureApp = {};
+var lectureApp = {};
 var app = angular.module('lectureApp', ['ngResource']);
 
 /*** Services ***/
 
+app.factory('utThumb', ['$http', function ($http) {  
+    var req = function (utid) {
+        var ret = $http.jsonp('https://gdata.youtube.com/feeds/api/videos/' + utid + '?v=2&alt=json-in-script&callback=JSON_CALLBACK')
+                        .success(function (data) { })
+                        .error(function (data, status, headers, config) { return "Error retrieving data from YouTupe Data API" })
+                        .then(function (response) {
+                        return response.data.entry.media$group.media$thumbnail[0].url;
+                    });
+        return ret;
+    }
+
+    return req;
+}]);
+
+
+app.factory('isTeacher', ['$http', function ($http) {
+    var req = $http.get('/account/rolecheck').success(function (data) {
+        return data;
+    });
+    return req;
+}]);
+
+
+/*** Models ***/
+
 app.factory('CourseModel', ['$resource', '$routeParams', function ($resource, $routeParams) {
-    console.log("kallar");
+
     var resource = $resource('/api/course/:id', { id: '@id' }, {
         query: { method: 'GET', isArray: true },
         get: { method: 'GET',  isArray: false },
@@ -48,15 +73,13 @@ app.factory('CommentModel', ['$resource', '$routeParams', function ($resource, $
 
 
 
-
-
 /*** Controllers ***/
 
-app.controller("coursesCtrl", ['$scope', '$route', 'CourseModel', function ($scope, $route, CourseModel) {
+app.controller("coursesCtrl", ['$scope', '$route', 'CourseModel','isTeacher', function ($scope, $route, CourseModel, isTeacher) {
 
     $scope.message = 'Available courses';
     $scope.courses = CourseModel.query();
-//console.log($scope.courses);
+    $scope.role = isTeacher;
     $scope.newCourse = '';
     $scope.addCourse = function () {
         CourseModel.create({ Name: $scope.newCourse},
@@ -68,22 +91,32 @@ app.controller("coursesCtrl", ['$scope', '$route', 'CourseModel', function ($sco
     };
 }]);
 
-app.controller("courseCtrl", ['$scope', '$routeParams', 'CourseModel', 'VideoModel', function ($scope, $routeParams, CourseModel, VideoModel) {
+app.controller("courseCtrl", ['$scope', '$routeParams', 'CourseModel', 'VideoModel','isTeacher','utThumb', function ($scope, $routeParams, CourseModel, VideoModel,isTeacher,utThumb) {
 
     $scope.message = 'Course: ';
-//$scope.course = CourseModel.get({ id: $routeParams.id });
     CourseModel.get({ id: $routeParams.id },
     function (data) {
         $scope.name = data.Name;
         $scope.videos = data.Videos;
+
+//console.log($scope.videos);
+
+        for (var v in $scope.videos) {
+            $scope.videos[v].thumb = utThumb($scope.videos[v].Link);
+            console.log(v)
+        }
     });
+    $scope.role = isTeacher;
+
+
+
 
     $scope.newVideo = {};
     $scope.addVideo = function () {
-console.log({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Description: $scope.newVideo.description });
-        VideoModel.create({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Description: $scope.newVideo.description },
+//console.log({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Description: $scope.newVideo.description });
+        VideoModel.create({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Desciption: $scope.newVideo.description },
         function (data) {
-            $scope.newVideo = {};
+            $scope.newVideo = {};r
             $scope.videos.push(data);        
         });
     };
@@ -98,9 +131,6 @@ app.controller("videoCtrl", ['$scope', '$routeParams', 'VideoModel', 'CommentMod
         $scope.description = data.Description;
         $scope.link = data.Link;
         $scope.comments = data.Comments;
-    
-               
-        onYouTubeIframeAPIReady(data.Link); 
     });
 
     $scope.newComment = "";
@@ -135,8 +165,10 @@ app.config(['$routeProvider', function ($route) {
         controller: app.videoCtrl
     });
 
+    $route.otherwise({
+        redirectTo: '/'
+    });
+
 
 }]);
-
-
-
+>>>>>>> f064cf1ec6d3aeeb47c874ee4449ecb05a3da3de
