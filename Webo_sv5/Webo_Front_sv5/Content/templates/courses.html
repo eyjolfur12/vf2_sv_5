@@ -1,4 +1,5 @@
 ﻿<div data-ng-controller="coursesCtrl">
+
 	<h3>{{ message }}</h3>
 
 
@@ -9,12 +10,17 @@
 	  <li><a href="/#/course/{{course.Id}}">{{course.Name}} </a></li>
 	</ul>
 
+
     <div data-ng-switch on="role.data">
-    <div data-ng-switch-when="True">
-	<h4>Create course:</h4>
-	<input name="new-course" id="new-course" data-ng-model="newCourse">
-	<button data-ng-click= "addCourse()">add</button>
-	</div>
+        <div data-ng-switch-when="True">
+   	    <h4>Create course:</h4>
+
+            <div class="input-append">
+                <input type="text" class="input-xlarge" name="new-course" id="new-course" data-ng-model="newCourse">
+	            <button class="btn btn-primary" data-ng-click= "addCourse()">Create</button>
+            </div>
+
+        </div>
 	</div>
 
 </div>	

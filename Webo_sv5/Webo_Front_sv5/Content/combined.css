@@ -13,3 +13,7 @@ body {
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
 
 }
+
+.well {
+    margin-left: -25px;
+}

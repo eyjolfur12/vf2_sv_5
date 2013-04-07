@@ -1,22 +1,42 @@
 ﻿
 <div data-ng-controller="videoCtrl">
-	<h3>{{ name }}</h3>
-    <p>{{ description }}</p>
-    <p id="link">{{ link }}</p>
+
+
+    <div class="row">
+        <div class="span10">
+            <h3>{{ name }}</h3>
+            <p>Description: {{ description }}</p>
+      
+       
 
     
-    <div>
-        <div id="player"></div>
         
-        <h4>Comments:</h4>
-	    <ul data-ng-repeat="comment in comments">
-	      <li>{{comment.User}} -- {{ comment.CommentText }}</li>
-	    </ul>
-
-
-	    <h4>Add comment:</h4>
-	    <input name="new-comment" id="new-comment" data-ng-model="newComment">
-	    <button data-ng-click= "addComment()">add</button>
+         <div class="video-container">
+            <div id="player" >You need Flash player 8+ and JavaScript enabled to view this video.</div>
+             
+        </div>
+            <div>
+                 <a href="javascript:faster()">Faster</a> 
+             </div>
+ 
+        <h4>Add comment:</h4>
+        <textarea rows="3" class="span10" name="new-comment" id="new-comment" data-ng-model="newComment"></textarea>
+        <button class="btn btn-primary pull-right" data-ng-click="addComment()">Add Comment</button>
+  
+  
+        <div class="row">
+            <div class="span10">
+                <h4>Comments:</h4>
+                <ul data-ng-repeat="comment in comments | orderBy:'Id':reverse=true">
+                    <div class="well well-small">
+                        {{comment.User}} wrote: {{ comment.CommentText }}
+                    </div>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
+</div>
+
+
 

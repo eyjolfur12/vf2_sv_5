@@ -1,24 +1,54 @@
+﻿
 <div data-ng-controller="courseCtrl">
-	<h3>{{ name }}</h3>
+    <div class="row">
+        <div class="span5">
 
 
-    <h4>Lectures:</h4>
-	<ul data-ng-repeat="video in videos">
-	  <li><a href="/#/video/{{video.Id}}"><img src="{{video.thumb}}" /> {{video.Name}}</a></li>
-	</ul>
 
-     <div data-ng-switch on="role.data">
+	        <h3>{{ name }}</h3>
+            <p>{{ description }}</p>
+
+
+            <h4>Lectures:</h4>
+	        <ul data-ng-repeat="video in videos">
+	          <li><a href="/#/video/{{video.Id}}">{{video.Name}} </a></li>
+	        </ul>
+
+   <div data-ng-switch on="role.data">
     <div data-ng-switch-when="True">
-	<h4>Add lecture:</h4>
-    <form novalidate >
-	    Name: <input name="new-video" id="new-video" data-ng-model="newVideo.name" /><br />
-        YouTube Id: <input name="new-video" id="Text1" data-ng-model="newVideo.link" /><br />
-        Description: <input name="new-video" id="Text2" data-ng-model="newVideo.description" />
-	<button data-ng-click= "addVideo()">add</button>
-    </form>
+	        <h4>Add lecture:</h4>
+        <form nocalidate">
+            <div class="control-group">
+                <label class="control-label" for="lectureName">Lecture name</label>
+                <div class="controls">
+                    <input type="text" class="input-xlarge span5" name="new-video" id="new-video" data-ng-model="newVideo.name" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="youtubeId">Youtube ID</label>
+                <div class="controls">
+                    <input type="text" class="input-xlarge span5" name="new-video" id="youtubeId" data-ng-model="newVideo.link" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="description">Description</label>
+                <div class="controls">
+                    <textarea  name="new-video" rows="3" class="input-xlarge span5" id="description" data-ng-model="newVideo.description" ></textarea>
+                </div>
+            </div>    
+
+          <div class="control-group">
+            <div class="controls">
+
+              <button class="btn btn-primary pull-right" data-ng-click= "addVideo()">Add Lecture</button>
+            </div>
+          </div>
+        </form>
+     </div>
     </div>
-	</div>
+    
 
 
 	
 </div>	
+
