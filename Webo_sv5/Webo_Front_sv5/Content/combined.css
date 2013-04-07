@@ -1,4 +1,4 @@
-﻿html {
+html {
     background-color: #e2e2e2;
     margin: 0;
     padding: 0;
@@ -18,7 +18,7 @@ body {
     margin-left: -25px;
 }
 
-ul 
+ul#comments
 {
     list-style-type: none; /* taka bullet af comment*/
 }
@@ -27,3 +27,39 @@ ul
 {
 margin-bottom: 10px;
 }
+
+#commentAuthor {
+    font-size:20px;
+    text-decoration:underline;
+    margin-bottom:3px;
+    
+}
+
+div#loginNav {
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+
+/*** Responsive youtube embed ***/
+.video-container {
+    position: relative;
+    padding-bottom: 60%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+.errormsg {
+    color:red;
+}
+>>>>>>> b672f55a0fc0a90605cd0e498daa28a9551f28e7

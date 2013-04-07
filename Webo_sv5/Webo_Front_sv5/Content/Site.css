@@ -185,8 +185,6 @@ ul#menu {
     margin: 0 0 5px;
     padding: 0;
     text-align: right;
-
-    list-style-type: none; /* taka bullet af comment*/
 }
 
     ul#menu li {

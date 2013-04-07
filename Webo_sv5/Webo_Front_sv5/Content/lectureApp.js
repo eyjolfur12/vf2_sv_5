@@ -1,5 +1,4 @@
-﻿
-﻿var lectureApp = {};
+var lectureApp = {};
 var app = angular.module('lectureApp', ['ngResource']);
 
 /*** Services ***/
@@ -82,14 +81,21 @@ app.controller("coursesCtrl", ['$scope', '$route', 'CourseModel','isTeacher', fu
     $scope.courses = CourseModel.query();
     $scope.role = isTeacher;
     $scope.newCourse = '';
-    $scope.addCourse = function () {
 
-        CourseModel.create({ Name: $scope.newCourse},
-                function (data) {
-                    $scope.newCourse = '';
-                    $scope.courses.push(data);
-                });
-        
+    $scope.addCourse = function () {
+        if ($scope.newCourse) {
+            CourseModel.create({ Name: $scope.newCourse },
+            function (data) {
+                $scope.newCourse = '';
+                $scope.courses.push(data);
+                $scope.error = "";
+            });
+        }
+        else {
+            $scope.error = "Please enter a name for the course";
+
+        }
+
     };
 }]);
 
@@ -100,8 +106,6 @@ app.controller("courseCtrl", ['$scope', '$routeParams', 'CourseModel', 'VideoMod
     function (data) {
         $scope.name = data.Name;
         $scope.videos = data.Videos;
-
-//console.log($scope.videos);
 
         for (var v in $scope.videos) {
             $scope.videos[v].thumb = utThumb($scope.videos[v].Link);
@@ -118,15 +122,33 @@ app.controller("courseCtrl", ['$scope', '$routeParams', 'CourseModel', 'VideoMod
 
     $scope.newVideo = {};
     $scope.addVideo = function () {
-        VideoModel.create({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Description: $scope.newVideo.description },
-        function (data) {
-            $scope.newVideo = {};
-            $scope.videos.push(data);        
-        });
+
+        if (!($scope.newVideo.name)) {
+            $scope.nameError = "Please enter a name";
+        }
+        else { $scope.nameError = ""; }
+
+        if (!($scope.newVideo.link)) {
+            $scope.linkError = "Please enter a link";
+        }
+        else{ $scope.linkError = "";}
+
+        
+        if( $scope.newVideo.name && $scope.newVideo.link){
+            VideoModel.create({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Desciption: $scope.newVideo.description },
+            function (data) {
+                $scope.newVideo = {};
+                $scope.videos.push(data);
+
+            });
+        }
     };
 }]);
 
-app.controller("videoCtrl", ['$scope', '$routeParams', 'VideoModel', 'CommentModel','isTeacher',function ($scope, $routeParams, VideoModel, CommentModel, isTeacher) {
+app.controller("videoCtrl", ['$scope', '$routeParams', 'VideoModel', 'CommentModel', 'CourseModel','isTeacher', function ($scope, $routeParams, VideoModel, CommentModel, CourseModel, isTeacher) {
+
+    var currentVid;
+    var videoIdList = [];
 
     $scope.message = 'Lecture: ';
     VideoModel.get({ id: $routeParams.id },
@@ -136,7 +158,17 @@ app.controller("videoCtrl", ['$scope', '$routeParams', 'VideoModel', 'CommentMod
         $scope.link = data.Link;
         $scope.courseid = data.CourseId;
         $scope.comments = data.Comments;
-        onYouTubeIframeAPIReady(data.Link); // kalla i player og setja videoid til að spila
+        currentVid = data.Link;
+
+        CourseModel.get({ Id: data.CourseId },
+           function (data) {
+               var courseVideos = data.Videos;
+               $scope.courseVideos = courseVideos;
+
+           });
+
+        // render videoplayer with selected videoid parameter
+        onYouTubeIframeAPIReady(currentVid);        
     });
     $scope.role = isTeacher;
     $scope.editVideo = function () {
@@ -148,11 +180,18 @@ app.controller("videoCtrl", ['$scope', '$routeParams', 'VideoModel', 'CommentMod
     };
     $scope.newComment = "";
     $scope.addComment = function () {
-        CommentModel.create({ VideoId: $routeParams.id, CommentText: $scope.newComment },
-        function (data) {
-            $scope.newComment = "";
-            $scope.comments.push(data);
-        });
+        if ($scope.newComment) {
+            CommentModel.create({ VideoId: $routeParams.id, CommentText: $scope.newComment },
+            function (data) {
+                $scope.newComment = ""; 
+                $scope.comments.push(data);
+                $scope.commentError = "";
+                
+            });
+        }
+        else {
+            $scope.commentError = "Empty comments are not allowed";
+        }
     };
 }]);
 
