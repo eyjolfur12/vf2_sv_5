@@ -116,7 +116,7 @@ app.controller("courseCtrl", ['$scope', '$routeParams', 'CourseModel', 'VideoMod
 //console.log({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Description: $scope.newVideo.description });
         VideoModel.create({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Desciption: $scope.newVideo.description },
         function (data) {
-            $scope.newVideo = {};
+            $scope.newVideo = {};r
             $scope.videos.push(data);        
         });
     };
@@ -131,6 +131,7 @@ app.controller("videoCtrl", ['$scope', '$routeParams', 'VideoModel', 'CommentMod
         $scope.description = data.Description;
         $scope.link = data.Link;
         $scope.comments = data.Comments;
+        onYouTubeIframeAPIReady(data.Link); // kalla i player og setja videoid til að spila
     });
 
     $scope.newComment = "";
@@ -171,4 +172,4 @@ app.config(['$routeProvider', function ($route) {
 
 
 }]);
-
+>>>>>>> eb550a8af80d641a90f1c3dfcb64ae03619a8b7b

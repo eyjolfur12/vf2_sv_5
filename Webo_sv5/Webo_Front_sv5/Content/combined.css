@@ -1,4 +1,4 @@
-﻿html {
+html {
     background-color: #e2e2e2;
     margin: 0;
     padding: 0;
@@ -15,7 +15,10 @@ body {
 }
 
 .well {
-    margin: 2px 0px 0px -25px;
-    padding:5px;
-    
+    margin-left: -25px;
+}
+
+ul 
+{
+    list-style-type: none; /* taka bullet af comment*/
 }
