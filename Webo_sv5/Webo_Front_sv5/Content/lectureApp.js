@@ -116,7 +116,7 @@ app.controller("courseCtrl", ['$scope', '$routeParams', 'CourseModel', 'VideoMod
 //console.log({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Description: $scope.newVideo.description });
         VideoModel.create({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Desciption: $scope.newVideo.description },
         function (data) {
-            $scope.newVideo = {};r
+            $scope.newVideo = {};
             $scope.videos.push(data);        
         });
     };
@@ -171,4 +171,4 @@ app.config(['$routeProvider', function ($route) {
 
 
 }]);
->>>>>>> f064cf1ec6d3aeeb47c874ee4449ecb05a3da3de
+

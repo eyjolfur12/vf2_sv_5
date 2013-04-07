@@ -29,7 +29,7 @@
                 <h4>Comments:</h4>
                 <ul data-ng-repeat="comment in comments | orderBy:'Id':reverse=true">
                     <div class="well well-small">
-                        <h6 style="font-size:15px;text-decoration:underline;margin:0px;">{{comment.User}} wrote: {{Created}}</h6> {{ comment.CommentText }}
+                        <p style="font-size:15px;text-decoration:underline;margin:0px;">{{comment.User}} wrote: {{Created}}</p> {{ comment.CommentText }}
                     </div>
                 </ul>
             </div>
