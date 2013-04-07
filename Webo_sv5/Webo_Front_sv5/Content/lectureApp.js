@@ -143,7 +143,7 @@ app.controller("courseCtrl", ['$scope', '$routeParams', 'CourseModel', 'VideoMod
 
         
         if( $scope.newVideo.name && $scope.newVideo.link){
-            VideoModel.create({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Desciption: $scope.newVideo.description },
+            VideoModel.create({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Description: $scope.newVideo.description },
             function (data) {
                 $scope.newVideo = {};
                 data.thumb = utThumb(data.Link);
