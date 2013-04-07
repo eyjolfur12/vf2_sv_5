@@ -258,6 +258,7 @@
     <Content Include="Content\responsiveEmbed.css" />
     <Content Include="Content\templates\course.html" />
     <Content Include="Content\templates\courses.html" />
+    <Content Include="Content\templates\coursesOverview.html" />
     <Content Include="Content\templates\video.html" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
