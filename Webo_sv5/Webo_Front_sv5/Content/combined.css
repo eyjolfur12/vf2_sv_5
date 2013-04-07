@@ -36,6 +36,10 @@ ul#lectureList {
 
 }
 
+ul#relatedVids {
+    list-style-type:none;
+}
+
 .btn
 {
 margin-bottom: 10px;

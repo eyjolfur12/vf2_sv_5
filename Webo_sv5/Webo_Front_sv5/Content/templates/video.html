@@ -6,7 +6,8 @@
             
             <div id="thumb-container">             
                 <h2>Related videos:</h2>   
-                <ul data-ng-repeat="vid in courseVideos">                   
+                <ul id="relatedVids" data-ng-repeat="vid in courseVideos"> 
+                    <div class="well well-small">                  
                     <li><strong>{{ vid.Name }}:</strong>
                         <a href="/#/video/{{ vid.Id }}">
                             <div>
@@ -16,6 +17,7 @@
                             </div>
                         </a>
                     </li>
+                    </div>
                 </ul>
             </div>
        
