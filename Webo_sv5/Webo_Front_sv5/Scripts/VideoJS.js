@@ -49,11 +49,13 @@ function faster() {
         alert("Ekki hægt að auka hraða");
     }
 }
+
 function getRelatedVideos() {
 
 }
 
 // Create a thumbnail for a video snippet.
+/*
 function createDisplayThumbnail(videoSnippet) {
     var titleEl = $('<h3>');
     titleEl.addClass('video-title');
@@ -65,4 +67,4 @@ function createDisplayThumbnail(videoSnippet) {
     div.css('backgroundImage', 'url("' + thumbnailUrl + '")');
     div.append(titleEl);
     $('#video-container').append(div);
-}
+}*/
