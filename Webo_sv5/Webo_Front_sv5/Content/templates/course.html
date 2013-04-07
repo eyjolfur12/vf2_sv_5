@@ -1,14 +1,13 @@
-﻿
-<div data-ng-controller="courseCtrl">
+﻿<div data-ng-controller="courseCtrl">
     <div class="row">
         <div class="span5">
+
 	        <h3>{{ name }}</h3>
             <p>{{ description }}</p>
 
-
             <h4>Lectures:</h4>
 	        <ul data-ng-repeat="video in videos">
-	          <li><a href="/#/video/{{video.Id}}">{{video.Name}} </a></li>
+	            <li><a href="/#/video/{{video.Id}}">{{video.Name}} </a></li>
 	        </ul>
           
 
@@ -16,41 +15,44 @@
         </div>
         <div class="span5">
 
-   <div data-ng-switch on="role.data">
-    <div data-ng-switch-when="True">
+            <div data-ng-switch on="role.data">
+                <div data-ng-switch-when="True">
 
-	        <h3>Add lecture:</h3>
-            <form nocalidate">
-                <div class="control-group">
-                    <label class="control-label" for="lectureName">Lecture name</label>
-                    <div class="controls">
-                        <input type="text" class="input-xlarge span5" name="new-video" id="new-video" data-ng-model="newVideo.name" />
-                    </div> 
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="youtubeId">Youtube ID</label>
-                    <div class="controls">
-                        <input type="text" class="input-xlarge span5" name="new-video" id="youtubeId" data-ng-model="newVideo.link" />
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="description">Description</label>
-                    <div class="controls">
-                        <textarea  name="new-video" rows="3" class="input-xlarge span5" id="description" data-ng-model="newVideo.description" ></textarea>
-                    </div>
-                </div>    
+	                <h3>Add lecture:</h3>
+                    <form novalidate">
+                        <div class="control-group">
+                            <label class="control-label" for="lectureName">Lecture name</label>
+                            <div class="controls">
+                                <input type="text" class="input-xlarge span5" name="new-video" id="new-video" data-ng-model="newVideo.name" />
+                            </div>
+                            <div class="errormsg">{{ nameError }}</div> 
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="youtubeId">Youtube ID</label>
+                            <div class="controls">
+                                <input placeholder="For example: lFEDhm3dWkY" type="text" class="input-xlarge span5" name="new-video" id="youtubeId" data-ng-model="newVideo.link" />
+                            </div>
+                            <div class="errormsg">{{ linkError }}</div>
+                        </div>
 
-              <div class="control-group">
-                <div class="controls">
+                        <div class="control-group">
+                            <label class="control-label" for="description">Description</label>
+                            <div class="controls">
+                                <textarea placeholder="Optional description for the lecture"  name="new-video" rows="3" class="input-xlarge span5" id="description" data-ng-model="newVideo.description" ></textarea>
+                            </div>
+                        </div>    
 
-                  <button class="btn btn-primary pull-right" data-ng-click= "addVideo()">Add Lecture</button>
+                        <div class="control-group">
+                            <div class="controls">
+                                <button class="btn btn-primary pull-right" data-ng-click= "addVideo()">Add Lecture</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-              </div>
-            </form>
             </div>
         </div>
-
     </div>
+</div>
 
 
 

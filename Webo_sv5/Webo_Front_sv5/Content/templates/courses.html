@@ -3,11 +3,9 @@
 	<h3>{{ message }}</h3>
 
 
-
-
 	<h4>Current courses:</h4>
 	<ul data-ng-repeat="course in courses">
-	  <li><a href="/#/course/{{course.Id}}">{{course.Name}} </a></li>
+        <li><a href="/#/course/{{course.Id}}">{{course.Name}} </a></li>
 	</ul>
 
 
@@ -16,13 +14,12 @@
    	    <h4>Create course:</h4>
 
             <div class="input-append">
-                <input type="text" class="input-xlarge" name="new-course" id="new-course" data-ng-model="newCourse">
+                <input type="text" class="input-xlarge" name="new-course" placeholder="Course name" id="new-course" data-ng-model="$parent.newCourse">
 	            <button class="btn btn-primary" data-ng-click= "addCourse()">Create</button>
             </div>
-
+            <div class="errormsg">{{ $parent.error }}</div>
         </div>
 	</div>
-
 </div>	
 
 		

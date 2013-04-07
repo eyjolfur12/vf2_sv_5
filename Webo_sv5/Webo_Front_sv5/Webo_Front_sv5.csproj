@@ -255,10 +255,8 @@
     <Content Include="Content\lectureApp.js" />
     <Content Include="Content\login.css" />
     <Content Include="Content\combined.css" />
-    <Content Include="Content\responsiveEmbed.css" />
     <Content Include="Content\templates\course.html" />
     <Content Include="Content\templates\courses.html" />
-    <Content Include="Content\templates\coursesOverview.html" />
     <Content Include="Content\templates\video.html" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -324,7 +322,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
