@@ -106,6 +106,7 @@ app.controller("courseCtrl", ['$scope', '$routeParams', 'CourseModel', 'VideoMod
     function (data) {
         $scope.name = data.Name;
         $scope.videos = data.Videos;
+        $scope.id = data.Id;
 
         for (var v in $scope.videos) {
             $scope.videos[v].thumb = utThumb($scope.videos[v].Link);
@@ -113,11 +114,18 @@ app.controller("courseCtrl", ['$scope', '$routeParams', 'CourseModel', 'VideoMod
     });
     $scope.role = isTeacher;
     $scope.editCourse = function () {
-        CourseModel.save({ Id: $routeParams.id, Name: $scope.name }
+        console.log("scopeid= " + $routeParams.id)
+        //CourseModel.save({ Id: $routeParams.id, Name: $scope.name });
+        //, function (data) { $scope.success = "Update was succesfull!" }
+        //, function (data) { alert("blllla") }
+
+        CourseModel.save({ Id: $routeParams.id,  Name: $scope.name }
         , function (data) { $scope.success = "Update was succesfull!" }
         );
 
+
     };
+
 
 
     $scope.newVideo = {};
@@ -138,6 +146,7 @@ app.controller("courseCtrl", ['$scope', '$routeParams', 'CourseModel', 'VideoMod
             VideoModel.create({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Desciption: $scope.newVideo.description },
             function (data) {
                 $scope.newVideo = {};
+                data.thumb = utThumb(data.Link);
                 $scope.videos.push(data);
 
             });
@@ -160,6 +169,10 @@ app.controller("videoCtrl", ['$scope', '$routeParams', 'VideoModel', 'CommentMod
         $scope.comments = data.Comments;
         currentVid = data.Link;
 
+        // render videoplayer with selected videoid parameter
+        initPlayer(data.Link);
+
+
         CourseModel.get({ Id: data.CourseId },
            function (data) {
                var courseVideos = data.Videos;
@@ -167,8 +180,7 @@ app.controller("videoCtrl", ['$scope', '$routeParams', 'VideoModel', 'CommentMod
 
            });
 
-        // render videoplayer with selected videoid parameter
-        onYouTubeIframeAPIReady(currentVid);        
+
     });
     $scope.role = isTeacher;
     $scope.editVideo = function () {
