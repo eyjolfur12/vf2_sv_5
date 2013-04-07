@@ -6,7 +6,47 @@
         <div class="span10">
             <h3>{{ name }}</h3>
             <p>Description: {{ description }}</p>
-      
+  
+            
+            <div data-ng-switch on="role.data">
+    <div data-ng-switch-when="True">
+
+         <button class="btn btn-primary pull-left" data-ng-click="show=!show">Edit lecture information</button><br style="clear:both"/>
+
+        <div data-ng-show="show">
+
+	                <h4>Edit lecture info:</h4>
+                <div style="color:red">{{ success }}</div>
+                <form nocalidate">
+                    <div class="control-group">
+                        <label class="control-label" for="lectureName">Lecture name</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge span5" name="new-video" id="new-video" data-ng-model="$parent.name" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="youtubeId">Youtube ID</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge span5" name="new-video" id="youtubeId" data-ng-model="$parent.link" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="description">Description</label>
+                        <div class="controls">
+                            <textarea  name="new-video" rows="3" class="input-xlarge span5" id="description" data-ng-model="$parent.description" ></textarea>
+                        </div>
+                    </div>    
+
+                  <div class="control-group">
+                    <div class="controls">
+
+                      <button class="btn btn-primary pull-right" data-ng-click= "editVideo()">Update Lecture</button>
+                    </div>
+                  </div>
+                </form>
+         </div>
+     </div>
+    </div>    
        
         
          <div class="video-container">

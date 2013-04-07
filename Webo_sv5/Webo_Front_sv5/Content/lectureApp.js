@@ -34,7 +34,7 @@ app.factory('CourseModel', ['$resource', '$routeParams', function ($resource, $r
     var resource = $resource('/api/course/:id', { id: '@id' }, {
         query: { method: 'GET', isArray: true },
         get: { method: 'GET',  isArray: false },
-        save: { method: 'PUT', params: { id: $routeParams.rid } },
+        save: { method: 'PUT',params: { id: $routeParams.id } },
         create: { method: 'POST' },
         delete: { method: 'DELETE' }
     }
@@ -48,7 +48,7 @@ app.factory('VideoModel', ['$resource', '$routeParams', function ($resource, $ro
     var resource = $resource('/api/video/:id', { id: '@id' }, {
         query: { method: 'GET', isArray: true },
         get: { method: 'GET' },
-        save: { method: 'PUT', params: { id: $routeParams.rid } },
+        save: { method: 'PUT', params: { id: $routeParams.id } },
         create: { method: 'POST' },
         delete: { method: 'DELETE' }
     }
@@ -62,7 +62,7 @@ app.factory('CommentModel', ['$resource', '$routeParams', function ($resource, $
     var resource = $resource('/api/comment/:id', { id: '@id' }, {
         query: { method: 'GET', isArray: true },
         get: { method: 'GET' },
-        save: { method: 'PUT', params: { id: $routeParams.rid } },
+        save: { method: 'PUT', params: { id: $routeParams.id } },
         create: { method: 'POST' },
         delete: { method: 'DELETE' }
     }
@@ -83,6 +83,7 @@ app.controller("coursesCtrl", ['$scope', '$route', 'CourseModel','isTeacher', fu
     $scope.role = isTeacher;
     $scope.newCourse = '';
     $scope.addCourse = function () {
+
         CourseModel.create({ Name: $scope.newCourse},
                 function (data) {
                     $scope.newCourse = '';
@@ -104,26 +105,28 @@ app.controller("courseCtrl", ['$scope', '$routeParams', 'CourseModel', 'VideoMod
 
         for (var v in $scope.videos) {
             $scope.videos[v].thumb = utThumb($scope.videos[v].Link);
-            console.log(v)
         }
     });
     $scope.role = isTeacher;
+    $scope.editCourse = function () {
+        CourseModel.save({ Id: $routeParams.id, Name: $scope.name }
+        , function (data) { $scope.success = "Update was succesfull!" }
+        );
 
-
+    };
 
 
     $scope.newVideo = {};
     $scope.addVideo = function () {
-//console.log({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Description: $scope.newVideo.description });
-        VideoModel.create({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Desciption: $scope.newVideo.description },
+        VideoModel.create({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Description: $scope.newVideo.description },
         function (data) {
-            $scope.newVideo = {};r
+            $scope.newVideo = {};
             $scope.videos.push(data);        
         });
     };
 }]);
 
-app.controller("videoCtrl", ['$scope', '$routeParams', 'VideoModel', 'CommentModel',function ($scope, $routeParams, VideoModel, CommentModel) {
+app.controller("videoCtrl", ['$scope', '$routeParams', 'VideoModel', 'CommentModel','isTeacher',function ($scope, $routeParams, VideoModel, CommentModel, isTeacher) {
 
     $scope.message = 'Lecture: ';
     VideoModel.get({ id: $routeParams.id },
@@ -131,10 +134,18 @@ app.controller("videoCtrl", ['$scope', '$routeParams', 'VideoModel', 'CommentMod
         $scope.name = data.Name;
         $scope.description = data.Description;
         $scope.link = data.Link;
+        $scope.courseid = data.CourseId;
         $scope.comments = data.Comments;
         onYouTubeIframeAPIReady(data.Link); // kalla i player og setja videoid til að spila
     });
+    $scope.role = isTeacher;
+    $scope.editVideo = function () {
+        console.log($scope.courseid );
+        VideoModel.save({ Id: $routeParams.id, CourseId: $scope.courseid, Name: $scope.name, Link: $scope.link, Description: $scope.description }
+        , function (data) { $scope.success = "Update was succesfull!" }
+        );
 
+    };
     $scope.newComment = "";
     $scope.addComment = function () {
         CommentModel.create({ VideoId: $routeParams.id, CommentText: $scope.newComment },

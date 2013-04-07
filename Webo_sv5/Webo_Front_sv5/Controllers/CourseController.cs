@@ -13,7 +13,7 @@ using WebMatrix.WebData;
 using System.Web.Security;
 
 namespace Webo_Front_sv5.Controllers
-{
+{ 
     public class CourseController : ApiController
     {
         private Webo_Front_sv5Context db = new Webo_Front_sv5Context();
@@ -44,6 +44,12 @@ namespace Webo_Front_sv5.Controllers
         [Authorize(Roles = "Teacher")]
         public HttpResponseMessage PutCourse(int id, Course course)
         {
+
+            if (String.IsNullOrEmpty(course.Teacher))
+            {
+                course.Teacher = User.Identity.Name;
+            }
+
             if (ModelState.IsValid && id == course.Id)
             {
                 db.Entry(course).State = EntityState.Modified;
