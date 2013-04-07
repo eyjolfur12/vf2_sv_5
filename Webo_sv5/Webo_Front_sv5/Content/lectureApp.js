@@ -4,25 +4,30 @@ var app = angular.module('lectureApp', ['ngResource']);
 
 /*** Services ***/
 
-
-app.factory('isTeacher', ['$http', function ($http) {
-    
-    
-    var req = $http.get('/account/rolecheck').success(function (data) {
-            var isit = "";
- console.log(data);
- isit = data;
- return isit;
- 
-        });
+app.factory('utThumb', ['$http', function ($http) {  
+    var req = function (utid) {
+        var ret = $http.jsonp('https://gdata.youtube.com/feeds/api/videos/' + utid + '?v=2&alt=json-in-script&callback=JSON_CALLBACK')
+                        .success(function (data) { })
+                        .error(function (data, status, headers, config) { return "Error retrieving data from YouTupe Data API" })
+                        .then(function (response) {
+                        return response.data.entry.media$group.media$thumbnail[0].url;
+                    });
+        return ret;
+    }
 
     return req;
-
-    
-
-    //return function(a, b) { return a + b;};
 }]);
 
+
+app.factory('isTeacher', ['$http', function ($http) {
+    var req = $http.get('/account/rolecheck').success(function (data) {
+        return data;
+    });
+    return req;
+}]);
+
+
+/*** Models ***/
 
 app.factory('CourseModel', ['$resource', '$routeParams', function ($resource, $routeParams) {
 
@@ -69,8 +74,6 @@ app.factory('CommentModel', ['$resource', '$routeParams', function ($resource, $
 
 
 
-
-
 /*** Controllers ***/
 
 app.controller("coursesCtrl", ['$scope', '$route', 'CourseModel','isTeacher', function ($scope, $route, CourseModel, isTeacher) {
@@ -89,16 +92,26 @@ app.controller("coursesCtrl", ['$scope', '$route', 'CourseModel','isTeacher', fu
     };
 }]);
 
-app.controller("courseCtrl", ['$scope', '$routeParams', 'CourseModel', 'VideoModel','isTeacher', function ($scope, $routeParams, CourseModel, VideoModel,isTeacher) {
+app.controller("courseCtrl", ['$scope', '$routeParams', 'CourseModel', 'VideoModel','isTeacher','utThumb', function ($scope, $routeParams, CourseModel, VideoModel,isTeacher,utThumb) {
 
     $scope.message = 'Course: ';
-//$scope.course = CourseModel.get({ id: $routeParams.id });
     CourseModel.get({ id: $routeParams.id },
     function (data) {
         $scope.name = data.Name;
         $scope.videos = data.Videos;
+
+//console.log($scope.videos);
+
+        for (var v in $scope.videos) {
+            $scope.videos[v].thumb = utThumb($scope.videos[v].Link);
+            console.log(v)
+        }
     });
     $scope.role = isTeacher;
+
+
+
+
     $scope.newVideo = {};
     $scope.addVideo = function () {
 //console.log({ CourseId: $routeParams.id, Name: $scope.newVideo.name, Link: $scope.newVideo.link, Description: $scope.newVideo.description });

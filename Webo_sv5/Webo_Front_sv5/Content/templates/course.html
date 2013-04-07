@@ -1,11 +1,10 @@
 <div data-ng-controller="courseCtrl">
 	<h3>{{ name }}</h3>
-    <p>{{ description }}</p>
 
 
     <h4>Lectures:</h4>
 	<ul data-ng-repeat="video in videos">
-	  <li><a href="/#/video/{{video.Id}}">{{video.Name}} </a></li>
+	  <li><a href="/#/video/{{video.Id}}"><img src="{{video.thumb}}" /> {{video.Name}}</a></li>
 	</ul>
 
      <div data-ng-switch on="role.data">
